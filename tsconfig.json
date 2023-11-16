@@ -22,6 +22,7 @@
     "types":"material-ui"
   },
   "include": [
-    "src"
+    "src/**/*.ts",
+    "declarations.d.ts"
   ]
 }

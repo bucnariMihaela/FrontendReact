@@ -1,69 +1,60 @@
 import React, { useState } from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { SearchOutlined, HomeOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
+import { Menu, Input } from 'antd';
+import "../index.scss";
+
+
+
 
 const items: MenuProps['items'] = [
+
     {
-        label: 'Navigation One',
-        key: 'mail',
-        icon: <MailOutlined />,
+        label: (
+            <Input
+                placeholder="input search text"
+                prefix={<SearchOutlined />}
+            ></Input>
+        ),
+        key:'search'
     },
     {
-        label: 'Navigation Two',
-        key: 'app',
-        icon: <AppstoreOutlined />,
-        disabled: false,
+        label: 'Home',
+        key: 'home',
+        icon: <HomeOutlined />,
+    },
+
+    {
+        label: 'My Cart',
+        key: 'cart',
+        icon: <ShoppingCartOutlined />,
     },
     {
-        label: 'Products',
-        key: '',
-        icon: <SettingOutlined />,
+        label: 'Profile',
+        key: 'profile',
+        icon: <UserOutlined />,
         children: [
             {
                 type: 'group',
-                label: 'Item 1',
                 children: [
                     {
-                        label: 'Option 1',
-                        key: 'setting:1',
+                        label: 'Registration',
+                        key: 'registration',
                     },
                     {
-                        label: 'Option 2',
-                        key: 'setting:2',
-                    },
-                ],
-            },
-            {
-                type: 'group',
-                label: 'Item 2',
-                children: [
-                    {
-                        label: 'Option 3',
-                        key: 'setting:3',
-                    },
-                    {
-                        label: 'Option 4',
-                        key: 'setting:4',
+                        label: 'Login',
+                        key: 'login',
                     },
                 ],
             },
         ],
     },
-    {
-        label: (
-            <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-                Navigation Four - Link
-            </a>
-        ),
-        key: 'alipay',
-    },
 ];
 
 const NavBar: React.FC = () => {
-    const [current, setCurrent] = useState('mail');
+    const [current, setCurrent] = useState('home');
 
-    const onClick: MenuProps['onClick'] = (e) => {
+    const onClick = (e: any) => {
         console.log('click ', e);
         setCurrent(e.key);
     };
