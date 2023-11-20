@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
             <Row justify={"space-evenly"}>
             {products.map((product) => {
                 return(
-                        <Col xs={{span: 5, offset: 1}}>
+                        <Col key ={product.id} xs={{span: 5, offset: 1}}>
                             <Product name={product.productName}
                                     price = {product.price}
 
