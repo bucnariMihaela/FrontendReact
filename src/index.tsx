@@ -7,6 +7,7 @@ import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import { AuthProvider } from './components/AuthProvider';
 import Logout from "./pages/Logout";
+import ProductDetails from "./components/ProductDetails";
 
 
 export default function App() {
@@ -21,6 +22,8 @@ export default function App() {
                     <Route path="logout" element={<Logout/>} />
 
                     <Route path="products" element={<Product/>} />
+
+                    <Route path="/productDetails/:productId" element={<ProductDetails />} />
                 </Route>
             </Routes>
         </BrowserRouter>
