@@ -35,59 +35,90 @@ const Registration: React.FC = () => {
 
     return (
         <Form onFinish={onFinish}
-            name="basic"
+            name="trigger"
+              style={{maxWidth: 600}}
+            layout="vertical"
             labelCol={{span: 8}}
             wrapperCol={{span: 16}}
-            style={{maxWidth: 600}}
             initialValues={{remember: true}}
             autoComplete="off"
         >
 
             <Form.Item<FieldType>
+                hasFeedback
                 label="Name"
                 name="name"
-                rules={[{required: true, message: 'Please input your name!'}]}
+                validateTrigger="onBlur"
+                rules={[{required: true, max:255, message: 'Please input your name!'}]}
             >
                 <Input/>
             </Form.Item>
 
             <Form.Item<FieldType>
+                hasFeedback
                 label="Email"
                 name="email"
-                rules={[{required: true, message: 'Please input your email!'}]}
+                rules={[
+                    {required: true,
+                        message: 'Please input your email!'},
+                    () => ({
+                        validator(_, value) {
+                            if (value && value.includes('@')) {
+                                return Promise.resolve();
+                            }
+                            return Promise.reject(new Error('Email must contain @'));
+                        },
+                    }),
+                ]}
             >
                 <Input/>
             </Form.Item>
 
             <Form.Item<FieldType>
+                hasFeedback
                 label="Age"
                 name="age"
-                rules={[{required: true, message: 'Please input your age!'}]}
+                rules={[
+                    {required: true,
+                        message: 'Please input your age!'},
+
+                    () => ({
+                        validator(_, value) {
+                            if (!value || (value >= 18)) {
+                                return Promise.resolve();
+                            }
+                            return Promise.reject(new Error('You must be at least 18 years old!'));
+                        },
+                    }),
+                ]}
             >
                 <Input/>
             </Form.Item>
 
             <Form.Item<FieldType>
+                hasFeedback
                 label="Username"
                 name="username"
-                rules={[{required: true, message: 'Please input your username!'}]}
+                rules={[{required: true,max:255, message: 'Please input your username!'}]}
             >
                 <Input/>
             </Form.Item>
 
             <Form.Item<FieldType>
+                hasFeedback
                 label="Password"
                 name="password"
-                rules={[{required: true, message: 'Please input your password!'}]}
+                rules={[{required: true,max:255, message: 'Please input your password!'}]}
             >
                 <Input.Password/>
             </Form.Item>
 
             <Form.Item<FieldType>
+                hasFeedback
                 label="Confirm Password"
                 name="confirmPassword"
                 rules={[
-                    {required: true, message: 'Please input your password!'},
+                    {required: true,max:255, message: 'Please input your password!'},
 
                     ({getFieldValue}) => ({
                         validator(_, value) {

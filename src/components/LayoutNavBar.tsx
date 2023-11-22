@@ -59,6 +59,11 @@ const NavBar: React.FC = () => {
                             label: <Link to="/logout"> Logout</Link>,
                             key: 'logout',
                         } ,
+                        authState.isAuthenticated && {
+                            label: <Link to="/admin"> Admin</Link>,
+                            key: 'admin',
+                        } ,
+
                     ],
                 },
             ],

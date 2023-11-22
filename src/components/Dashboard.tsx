@@ -7,6 +7,7 @@ export interface Product {
     productName: string
     description: string
     price: number
+    image: string
     stock: Stock
     colors: Color[]
 }
@@ -44,9 +45,11 @@ const Dashboard: React.FC = () => {
             {products.map((product) => {
                 return(
                         <Col key ={product.id} xs={{span: 5, offset: 1}}>
-                            <Product name={product.productName}
+                            <Product
+                                image = {product.image}
+                                name={product.productName}
                                     price = {product.price}
-
+                                     id={product.id}
                             />
                         </Col>
                 )
