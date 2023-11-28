@@ -1,32 +1,11 @@
+// @ts-ignore
 import React, {useEffect, useState} from 'react';
 import { Col, Row } from 'antd';
 import Product from "./Product";
-
-export interface Product {
-    id: string
-    productName: string
-    description: string
-    price: number
-    image: string
-    stock: Stock
-    colors: Color[]
-}
-
-export interface Stock {
-    quantity: number
-}
-
-export interface Color {
-    id: string
-    colorName: string
-    red: number
-    green: number
-    blue: number
-}
-
+import {Product as ProductType} from "../components/Types";
 const Dashboard: React.FC = () => {
 
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<ProductType[]>([]);
     useEffect(() => {
         fetch('http://localhost:8080/products')
             .then((response) => response.json())

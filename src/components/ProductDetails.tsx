@@ -2,8 +2,8 @@ import * as React from 'react';
 import {Card, Col, Row, Select} from 'antd';
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {Product} from "./Dashboard";
 import {ShoppingCartOutlined} from "@ant-design/icons";
+import {Product} from "./Types";
 const { Meta } = Card;
 
 
@@ -46,7 +46,7 @@ const ProductDetails: React.FC = () => {
                                 placeholder="Select a color"
                                 optionFilterProp="children"
                                // onChange={onChange}
-                                options={product?.colors.map(color => ({
+                                options={product?.colors?.map(color => ({
                                     value: color.id,
                                     label: color.colorName
                                 }))}

@@ -8,7 +8,9 @@ import Login from "./pages/Login";
 import { AuthProvider } from './components/AuthProvider';
 import Logout from "./pages/Logout";
 import ProductDetails from "./components/ProductDetails";
-import AdminPage from "./pages/AdminPage";
+import AdminPageCreateProduct from "./pages/AdminPageCreateProduct";
+import AdminPageAllProducts from "./pages/AdminPageAllProducts";
+import AdminPageCreateColor from "./pages/AdminPageCreateColor";
 
 
 export default function App() {
@@ -25,7 +27,9 @@ export default function App() {
                     <Route path="products" element={<Product/>} />
                     <Route path="/productDetails/:productId" element={<ProductDetails />} />
 
-                    <Route path="admin" element={<AdminPage/>} />
+                    <Route path="admin-create-product" element={<AdminPageCreateProduct/>} />
+                    <Route path="admin-all-products" element={<AdminPageAllProducts/>} />
+                    <Route path="admin-create-color" element={<AdminPageCreateColor/>} />
                 </Route>
             </Routes>
         </BrowserRouter>

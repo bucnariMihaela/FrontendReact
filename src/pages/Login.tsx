@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {useAuth} from "../components/AuthProvider";
 
 
-type FieldType = {
+type LoginFormType = {
     username?: string;
     password?: string;
     remember?: string;
@@ -15,9 +15,10 @@ const Login: React.FC = () => {
     const navigate = useNavigate();
     const { authState, setAuthState } = useAuth();
 
-    const onFinish = (values: FieldType) => {
+    const onFinish = (values: LoginFormType) => {
         fetch('http://localhost:8080/login', {
             method: 'POST',
+            credentials: 'include',
             body: JSON.stringify(values),
             headers: { 'Content-Type': 'application/json' },
         })
@@ -28,7 +29,7 @@ const Login: React.FC = () => {
                 return res;
             })
             .then(json =>{
-                setAuthState({ isAuthenticated: true, userRole: 'user' });
+                setAuthState({ isAuthenticated: true, userRole: 'customer' });
                 navigate('/dashboard');
             })
     }
@@ -43,7 +44,7 @@ const Login: React.FC = () => {
               autoComplete="off"
         >
 
-            <Form.Item<FieldType>
+            <Form.Item
                 label="Username"
                 name="username"
                 rules={[{required: true, message: 'Please input your username!'}]}
@@ -51,7 +52,7 @@ const Login: React.FC = () => {
                 <Input/>
             </Form.Item>
 
-            <Form.Item<FieldType>
+            <Form.Item
                 label="Password"
                 name="password"
                 rules={[{required: true, message: 'Please input your password!'}]}
@@ -59,7 +60,7 @@ const Login: React.FC = () => {
                 <Input.Password/>
             </Form.Item>
 
-            <Form.Item<FieldType>
+            <Form.Item
                 name="remember"
                 valuePropName="checked"
                 wrapperCol={{offset: 8, span: 16}}

@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useState } from 'react';
 import { SearchOutlined, HomeOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
@@ -58,9 +59,13 @@ const NavBar: React.FC = () => {
                         authState.isAuthenticated && {
                             label: <Link to="/logout"> Logout</Link>,
                             key: 'logout',
+                        },
+                        authState.isAuthenticated && {
+                            label: <Link to="/admin-all-products"> Admin - All Products</Link>,
+                            key: 'admin',
                         } ,
                         authState.isAuthenticated && {
-                            label: <Link to="/admin"> Admin</Link>,
+                            label: <Link to="/admin-create-color"> Admin - Create Color</Link>,
                             key: 'admin',
                         } ,
 
