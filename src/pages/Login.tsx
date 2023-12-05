@@ -29,7 +29,7 @@ const Login: React.FC = () => {
                 return res;
             })
             .then(json =>{
-                setAuthState({ isAuthenticated: true, userRole: 'customer' });
+                setAuthState({ isAuthenticated: true, userRole: 'customer', userUsername: values.username });
                 navigate('/dashboard');
             })
     }

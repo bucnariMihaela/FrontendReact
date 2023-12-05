@@ -25,7 +25,7 @@ const Product: React.FC<ProductProps> = ({name, price, id, image}) => {
     return (
         <>
            <Col span={24} className={"product-col"} onClick={handleProductClick}>
-               <Row className={"product-row"}> <img src={image} width={200} /></Row>
+               <Row className={"product-row"}> <img src={image} width={200} height={200} /></Row>
                <Row className={"product-row"}> {name}</Row>
                <Row className={"product-row"}>
                    <Col span={12}> {price}</Col>

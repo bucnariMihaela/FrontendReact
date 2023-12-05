@@ -33,7 +33,7 @@ const NavBar: React.FC = () => {
         },
 
         {
-            label: 'My Cart',
+            label: <Link to="/shopping-cart">My Cart</Link>,
             key: 'cart',
             icon: <ShoppingCartOutlined />,
         },

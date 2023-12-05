@@ -11,11 +11,15 @@ import ProductDetails from "./components/ProductDetails";
 import AdminPageCreateProduct from "./pages/AdminPageCreateProduct";
 import AdminPageAllProducts from "./pages/AdminPageAllProducts";
 import AdminPageCreateColor from "./pages/AdminPageCreateColor";
+import ShoppingCart from "./pages/ShoppingCart";
+import {CartProvider} from "./components/CartContext";
+
 
 
 export default function App() {
     return (
         <AuthProvider>
+            <CartProvider>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />}>
@@ -30,9 +34,12 @@ export default function App() {
                     <Route path="admin-create-product" element={<AdminPageCreateProduct/>} />
                     <Route path="admin-all-products" element={<AdminPageAllProducts/>} />
                     <Route path="admin-create-color" element={<AdminPageCreateColor/>} />
+                    <Route path="/shopping-cart" element={<ShoppingCart/>} />
+
                 </Route>
             </Routes>
         </BrowserRouter>
+            </CartProvider>
             </AuthProvider>
     );
 }

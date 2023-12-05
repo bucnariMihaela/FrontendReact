@@ -6,6 +6,7 @@ import {useLocalStorage} from "../hooks/useLocalStorage";
 type AuthState = { //starea de auth
     isAuthenticated: boolean;
     userRole: string | null;
+    userUsername?: string;
 };
 
 type AuthContextType = {
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         //valorile initiale
         isAuthenticated: false,
         userRole: null,
+        userUsername: null
     });
 
     return (

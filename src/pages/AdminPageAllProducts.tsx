@@ -31,11 +31,6 @@ const AdminPageAllProducts: React.FC = () => {
 
 
 
-
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
     const fetchProducts = () => {
         fetch('http://localhost:8080/products')
             .then((response) => response.json())
@@ -47,6 +42,11 @@ const AdminPageAllProducts: React.FC = () => {
                 console.log(err.message);
             });
     }
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
 
 
     const onDeleteProduct = id => {
@@ -68,7 +68,6 @@ const AdminPageAllProducts: React.FC = () => {
             .catch(error => {
                 console.error('Error deleting the product:', error);
             })
-
 
     };
 
@@ -101,7 +100,6 @@ const AdminPageAllProducts: React.FC = () => {
                     throw new Error('server response is not ok')
                 }
 
-
                 setIsModalOpen(false)
                 createNotification()
                 fetchProducts()
@@ -125,6 +123,8 @@ const AdminPageAllProducts: React.FC = () => {
     };
 
 
+
+    //aici ai ramas cu intelesu
     useEffect(() => {
         fetch('http://localhost:8080/color',{
             credentials: 'include'
