@@ -9,6 +9,8 @@ export interface CartProductType {
     productName: string
     price: number
     image: string
+    colorId:string
+    colorName: string
     quantity: number;
 }
 
@@ -61,17 +63,17 @@ export const CartProvider: React.FC = ({ children }) => {
 
     const addToCart = (item: CartProductType) => {
         setCartItems(currentCartItems => {
-            const existingItem = currentCartItems.find(cartItem => cartItem.id === item.id);
+            const existingItem = currentCartItems.find(cartItem => cartItem.id === item.id && cartItem && cartItem.colorId === item.colorId);
 
             if (existingItem) {
                 return currentCartItems.map(cartItem =>
-                    cartItem.id === item.id
+                    cartItem.id === item.id && cartItem.colorId === item.colorId
                         ? { ...cartItem, quantity: cartItem.quantity + 1 }
                         : cartItem
                 );
             } else {
                 // Dacă produsul nu există în coș, adaugă-l
-                return [...currentCartItems, { ...item, quantity: 1 }];
+                return [...currentCartItems, { ...item, quantity: 1, colorId:item.colorId }];
             }
         });
     };
@@ -93,8 +95,6 @@ export const CartProvider: React.FC = ({ children }) => {
                 return cartItem;
             });
         });
-
-
     }
 
     return (

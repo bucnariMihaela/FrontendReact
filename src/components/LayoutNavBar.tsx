@@ -1,11 +1,14 @@
 // @ts-ignore
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import { SearchOutlined, HomeOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu, Input } from 'antd';
 import "../index.scss";
 import {Link} from "react-router-dom";
 import {useAuth} from "./AuthProvider";
+import { Badge } from 'antd';
+import CartContext from "./CartContext";
+
 
 
 
@@ -13,6 +16,8 @@ const NavBar: React.FC = () => {
     const [current, setCurrent] = useState('dashboard');
     const { authState, setAuthState } = useAuth();
 
+    const { cartItems } = useContext(CartContext);
+    const itemCount = cartItems.reduce((accumulator, item) => accumulator + item.quantity, 0);
 
 
     const items: MenuProps['items'] = [
@@ -33,9 +38,14 @@ const NavBar: React.FC = () => {
         },
 
         {
-            label: <Link to="/shopping-cart">My Cart</Link>,
+            label:
+                <Link to="/shopping-cart">My Cart</Link>,
             key: 'cart',
-            icon: <ShoppingCartOutlined />,
+            icon:(
+                <Badge count={itemCount} showZero>
+                    <ShoppingCartOutlined style={{fontSize:'18px'}}/>
+                </Badge>
+            ),
         },
         {
             label: 'Profile',

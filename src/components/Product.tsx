@@ -28,7 +28,7 @@ const Product: React.FC<ProductProps> = ({name, price, id, image}) => {
                <Row className={"product-row"}> <img src={image} width={200} height={200} /></Row>
                <Row className={"product-row"}> {name}</Row>
                <Row className={"product-row"}>
-                   <Col span={12}> {price}</Col>
+                   <Col span={12}> ${price}</Col>
                    <Col span={12}> {authState.isAuthenticated === true &&<ShoppingCartOutlined style={{ fontSize: '24px' }} />}</Col>
                </Row>
         </Col>
